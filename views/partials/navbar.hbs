@@ -2,13 +2,13 @@
     <div class="nav-wrapper deep-purple lighten-2">
         <a href="#" class="brand-logo">Курсы ИТ</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li>
+            <li class="{{#if isHome}} active {{/if}}">
                 <a href="/">Главная</a>
             </li>
-            <li>
+            <li class="{{#if isCours}} active {{/if}}">
                 <a href="/courses">Курсы</a>
             </li>
-            <li>
+            <li class="{{#if isAdd}} active {{/if}}">
                 <a href="/add">Добавить курс</a>
             </li>
         </ul>

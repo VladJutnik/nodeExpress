@@ -12,10 +12,22 @@ app.set('view engine', 'hbs')//тут мы уже говорим что нача
 app.set('views', 'views')
 app.use(express.static('public'))
 app.get('/', (req, res,next)=>{
-    res.render('index')
+    res.render('index', {
+        title: 'Главная страница',
+        isHome: true
+    })
 })
-app.get('/about', (req, res,next)=>{
-    res.render('about')
+app.get('/courses', (req, res,next)=>{
+    res.render('courses', {
+        title: 'Страница курсов',
+        isCours: true
+    })
+})
+app.get('/add', (req, res,next)=>{
+    res.render('add', {
+        title: 'Добавление курса',
+        isAdd: true
+    })
 })
 /*
 //Тут простой пример как работать с html страницами, однако они не денамические мы не можем что то перадать туда хз кнч
