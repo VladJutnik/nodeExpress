@@ -10,6 +10,7 @@ const hbs = exhds.create({
 app.engine('hbs', hbs.engine)//регестрируем что используем хандербарс
 app.set('view engine', 'hbs')//тут мы уже говорим что начали его использовать
 app.set('views', 'views')
+app.use(express.static('public'))
 app.get('/', (req, res,next)=>{
     res.render('index')
 })
