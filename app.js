@@ -14,9 +14,9 @@ app.engine('hbs', hbs.engine)//регестрируем что использу�
 app.set('view engine', 'hbs')//тут мы уже говорим что начали его использовать
 app.set('views', 'views')
 app.use(express.static('public'))
-app.use(homeRoute)
-app.use(addRoute)
-app.use(coursesRoute)
+app.use('/',homeRoute)
+app.use('/add',addRoute)
+app.use('/courses', coursesRoute)
 //
 
 /*
