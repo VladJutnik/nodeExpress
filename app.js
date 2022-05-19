@@ -1,6 +1,9 @@
 const express = require('express'),
     path = require('path'),
-    exhds = require('express-handlebars')
+    exhds = require('express-handlebars'),
+    homeRoute = require('./routes/home'),
+    addRoute = require('./routes/add'),
+    coursesRoute = require('./routes/courses')
 const app = express()
 
 const hbs = exhds.create({
@@ -11,24 +14,11 @@ app.engine('hbs', hbs.engine)//регестрируем что использу�
 app.set('view engine', 'hbs')//тут мы уже говорим что начали его использовать
 app.set('views', 'views')
 app.use(express.static('public'))
-app.get('/', (req, res,next)=>{
-    res.render('index', {
-        title: 'Главная страница',
-        isHome: true
-    })
-})
-app.get('/courses', (req, res,next)=>{
-    res.render('courses', {
-        title: 'Страница курсов',
-        isCours: true
-    })
-})
-app.get('/add', (req, res,next)=>{
-    res.render('add', {
-        title: 'Добавление курса',
-        isAdd: true
-    })
-})
+app.use(homeRoute)
+app.use(addRoute)
+app.use(coursesRoute)
+//
+
 /*
 //Тут простой пример как работать с html страницами, однако они не денамические мы не можем что то перадать туда хз кнч
 app.get('/', (req, res,next)=>{
