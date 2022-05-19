@@ -7,4 +7,8 @@ router.get('/', (rea, res) =>{
         isAdd: true
     })
 })
+router.post('/', (rea, res) =>{
+    console.log(rea.body)
+    res.redirect('/courses')
+})
 module.exports = router
