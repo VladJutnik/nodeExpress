@@ -18,4 +18,20 @@ router.get('/:id', async (rea, res) =>{
         course
     })
 })
+router.get('/:id/edit',  async(rea, res) =>{
+    console.log(rea.query.allow)
+    const course = await Course.getOne(rea.params.id)
+    if(rea.query.allow){
+        res.render('course-edit', {
+            title: `Редактирование курса ${course.title}`,
+            course
+        })
+    } else {
+        return res.redirect('/')
+    }
+})
+router.post('/edit',  async(rea, res) =>{
+    await Course.update(rea.body)
+    return res.redirect('/courses')
+})
 module.exports = router
