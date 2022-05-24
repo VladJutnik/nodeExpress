@@ -10,4 +10,12 @@ router.get('/', async (rea, res) =>{
         courses
     })
 })
+router.get('/:id', async (rea, res) =>{
+    const course = await Course.getOne(rea.params.id)
+    res.render('course', {
+        layout: 'empty',
+        title: `Курс по ${course.title}`,
+        course
+    })
+})
 module.exports = router
