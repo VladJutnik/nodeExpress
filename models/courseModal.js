@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require('uuid'),
     fs = require('fs'),
     path = require('path')
-
+const p2 = path.join(__dirname, '..', 'data', 'card.json')
 class Course {
     constructor(title, price, img) {
         this.title = title

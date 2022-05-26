@@ -6,14 +6,15 @@ const { Router } = require('express'),
 router.post('/add',  async(rea, res) =>{
     const course = await Course.getOne(rea.body.id)
     await Card.add(course)
-    rea.redirect('/card')
+    rea.redirect('/')
 })
 router.get('/', async (rea, res) =>{
     const card = await Card.fethCard()
     res.render('card', {
         title: 'Корзина',
         isCard: true,
-        card
+        courses: card.courses,
+        price: card.price,
     })
 })
 
