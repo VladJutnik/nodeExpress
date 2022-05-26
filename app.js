@@ -3,6 +3,7 @@ const express = require('express'),
     exhds = require('express-handlebars'),
     homeRoute = require('./routes/home'),
     addRoute = require('./routes/add'),
+    addCard = require('./routes/card'),
     coursesRoute = require('./routes/courses')
 const app = express()
 
@@ -20,6 +21,7 @@ app.use(express.urlencoded({
 app.use('/',homeRoute)
 app.use('/add',addRoute)
 app.use('/courses', coursesRoute)
+app.use('/card', addCard)
 //
 
 /*
