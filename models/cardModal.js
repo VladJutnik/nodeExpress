@@ -1,35 +1,34 @@
-const path = require('path'),
-    fs = require('fs')
+const path = require('path')
+const fs = require('fs')
 
-//заренее генрируем путь для того что бы не определять путь каждый раз зоного
 const p = path.join(
-    require.main.filename,
+    path.dirname(require.main.filename),
     'data',
     'card.json'
 )
-const p2 = path.join(__dirname, '..', 'data', 'card.json')
 
 class CardModal {
+    static async add(course) {
+        const card = await CardModal.fetch()
 
-    static async add(course){
-        const card = await CardModal.fethCard()
-        const ind = card.courses.findIndex(c=>c.id === course.id)
-        const candidate = card.courses[ind]
+        const idx = card.courses.findIndex(c => c.id === course.id)
+        const candidate = card.courses[idx]
 
-        if(candidate){
-            //если курс уже есть
+        if (candidate) {
+            // курс уже есть
             candidate.count++
-            card.courses[ind] = candidate
+            card.courses[idx] = candidate
         } else {
-           //добавляем курс
+            // нужно добавить курс
             course.count = 1
             card.courses.push(course)
         }
+
         card.price += +course.price
 
         return new Promise((resolve, reject) => {
-            fs.writeFile(p2, JSON.stringify(card), err =>{
-                if(err){
+            fs.writeFile(p, JSON.stringify(card), err => {
+                if (err) {
                     reject(err)
                 } else {
                     resolve()
@@ -38,10 +37,10 @@ class CardModal {
         })
     }
 
-    static async fethCard(){
+    static async fetch() {
         return new Promise((resolve, reject) => {
-            fs.readFile(p2, 'utf-8', (err, content) =>{
-                if(err){
+            fs.readFile(p, 'utf-8', (err, content) => {
+                if (err) {
                     reject(err)
                 } else {
                     resolve(JSON.parse(content))

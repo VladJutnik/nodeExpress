@@ -46,12 +46,12 @@ class Course {
                 path.join(__dirname, '..', 'data', 'courses.json'),
                 JSON.stringify(courses),
                 (err) => {
-                if(err){
-                    reject(err)
-                } else {
-                    resolve()
+                    if(err){
+                        reject(err)
+                    } else {
+                        resolve()
+                    }
                 }
-             }
             )
         })
     }

@@ -1,21 +1,23 @@
-const { Router } = require('express'),
-    Card = require('../models/cardModal'),
-    Course = require('../models/courseModal'),
-    router = Router()
+const {Router} = require('express')
+const Card = require('../models/cardModal')
+const Course = require('../models/courseModal')
+const router = Router()
 
-router.post('/add',  async(rea, res) =>{
-    const course = await Course.getOne(rea.body.id)
+router.post('/add', async (req, res) => {
+    const course = await Course.getOne(req.body.id)
     await Card.add(course)
-    rea.redirect('/')
+    res.redirect('/card')
 })
-router.get('/', async (rea, res) =>{
-    const card = await Card.fethCard()
+
+router.get('/', async (req, res) => {
+    const card = await Card.fetch()
     res.render('card', {
         title: 'Корзина',
         isCard: true,
         courses: card.courses,
-        price: card.price,
+        price: card.price
     })
 })
 
+r
 module.exports = router

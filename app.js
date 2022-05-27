@@ -14,7 +14,7 @@ const hbs = exhds.create({
 app.engine('hbs', hbs.engine)//регестрируем что используем хандербарс
 app.set('view engine', 'hbs')//тут мы уже говорим что начали его использовать
 app.set('views', 'views')
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({
     extended: true
 })) //для того что бы обработать наши запросы и получить результат
