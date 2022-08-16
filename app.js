@@ -4,7 +4,8 @@ const express = require('express'),
     homeRoute = require('./routes/home'),
     addRoute = require('./routes/add'),
     addCard = require('./routes/card'),
-    coursesRoute = require('./routes/courses')
+    coursesRoute = require('./routes/courses'),
+    mongoose = require('mongoose')
 const app = express()
 
 const hbs = exhds.create({
@@ -32,7 +33,37 @@ app.get('/', (req, res,next)=>{
 app.get('/about', (req, res,next)=>{
     res.sendFile(path.join(__dirname, 'views','about.html'))
 })*/
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT || 5000
+async function start() {
+    try {
+
+        const {
+            MONGO_INITDB_ROOT_USERNAME: username,
+            MONGO_INITDB_ROOT_PASSWORD: password,
+            MONGO_HOST: host,
+        } = process.env
+        const uri = `mongodb://${username}:${password}@${host}/notes?authSource=admin`
+        //mongodb - Название контейнера !!!
+        await mongoose.connect(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
+        //это если без networka работать
+        /*await mongoose.connect(`mongodb://host.docker.internal:27017/notes`, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true
+        })*/
+        console.log(1111)
+        app.listen(
+            PORT,
+            console.log.bind(console, `Server has been started on port ${PORT}`)
+        )
+    } catch (e) {
+        console.log(e)
+    }
+}
+start()
+/*const PORT2 = process.env.PORT || 5000
 app.listen(PORT, ()=>{
     console.log(`Сервер запущен ${PORT}`)
-})
+})*/

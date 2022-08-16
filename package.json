@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "devW": "nodemon --legacy-watch app.js"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +14,8 @@
   "dependencies": {
     "express": "^4.18.0",
     "express-handlebars": "^6.0.6",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "mongoose": "^5.13.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

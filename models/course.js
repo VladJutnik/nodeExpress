@@ -7,7 +7,7 @@ class Course {
     this.title = title
     this.price = price
     this.img = img
-    this.id = uuid()
+    this.id = uuidv4()
   }
 
   toJSON() {
